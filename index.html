@@ -6,7 +6,10 @@
   <title>Para vos</title>
 
   <!-- Favicon (single-line data URI to avoid breakage) -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>💌</text></svg>'">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="favicon.ico">
+
+
 
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
@@ -21,7 +24,7 @@
 <div id="lock-screen">
   <div>
     <h1>💌</h1>
-    <p>A date you should remember</p>
+    <p>Enter the 4-digit code. (it's my birthday, in dd/mm format <3)</p>
     <input type="password" id="code" maxlength="4" inputmode="numeric" />
     <button onclick="unlock()">Open</button>
     <p id="error"></p>
@@ -104,7 +107,7 @@
 
 <!-- 🔐 Unlock script -->
 <script>
-  const CORRECT_CODE = "2810";
+  const CORRECT_CODE = atob("MjgxMA==");
 
   function unlock() {
     const input = document.getElementById("code").value;
