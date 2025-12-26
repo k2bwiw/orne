@@ -1,0 +1,255 @@
+:root{
+  --bg: #0f0f14;
+  --card: rgba(255,255,255,0.06);
+  --text: #eaeaea;
+  --muted: rgba(234,234,234,0.72);
+  --border: rgba(255,255,255,0.12);
+  --shadow: 0 18px 50px rgba(0,0,0,0.45);
+  --radius: 18px;
+  --max: 920px;
+}
+
+*{ box-sizing: border-box; }
+
+body{
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(1200px 600px at 20% 10%, rgba(255,255,255,0.08), transparent 60%),
+              radial-gradient(900px 500px at 80% 30%, rgba(255,255,255,0.05), transparent 55%),
+              var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+}
+
+header, section, footer{
+  width: min(var(--max), calc(100% - 32px));
+  margin: 22px auto;
+  padding: 22px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+header{
+  margin-top: 28px;
+  text-align: center;
+}
+
+h1{
+  margin: 0 0 10px 0;
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  letter-spacing: -0.02em;
+}
+
+.subtitle{
+  margin: 0;
+  color: var(--muted);
+  max-width: 56ch;
+  margin-inline: auto;
+}
+
+h2{
+  margin: 0 0 10px 0;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+}
+
+p{
+  margin: 0 0 10px 0;
+  color: var(--muted);
+}
+
+#music iframe{
+  margin-top: 14px;
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
+}
+
+hr{
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 16px 0;
+}
+
+/* Button + message box */
+.actions{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+button{
+  appearance: none;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.08);
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+}
+
+button:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.2);
+}
+
+button:active{
+  transform: translateY(0px);
+}
+
+.message-box{
+  width: 100%;
+  margin-top: 12px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,0.25);
+  color: var(--text);
+  min-height: 52px;
+}
+
+footer{
+  text-align: center;
+}
+
+footer p{
+  margin: 0;
+  color: rgba(234,234,234,0.6);
+  font-size: 0.95rem;
+}
+
+/* Small screens */
+@media (max-width: 480px){
+  header, section, footer{
+    padding: 18px;
+  }
+}
+.reveal summary{
+  cursor: pointer;
+  user-select: none;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.08);
+  display: inline-block;
+}
+
+.reveal summary:hover{
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.reveal[open] summary{
+  margin-bottom: 12px;
+}
+#hearts p { margin-bottom: 14px; }
+
+.heart-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.heart{
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 10px;
+  box-shadow: var(--shadow);
+}
+
+.heart summary{
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+  font-size: 32px;
+  display: grid;
+  place-items: center;
+  height: 62px;
+  border-radius: 14px;
+  background: rgba(0,0,0,0.20);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: transform 120ms ease;
+}
+
+.heart summary::-webkit-details-marker{ display:none; }
+
+.heart summary:hover{ transform: translateY(-2px); }
+
+.heart .note{
+  margin-top: 10px;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,0.25);
+  color: var(--text);
+  animation: pop 160ms ease-out;
+}
+
+@keyframes pop{
+  from{ transform: translateY(4px); opacity: 0.0; }
+  to{ transform: translateY(0); opacity: 1; }
+}
+/* Floating hearts (CSS-only overlay) */
+.floating-hearts{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.floating-hearts span{
+  position: absolute;
+  top: 110%;
+  left: var(--x, 50%);
+  font-size: var(--s, 28px);
+  opacity: 0.85;
+  filter: blur(0.1px);
+  transform: translateY(0) rotate(var(--r, 0deg));
+  animation: floatUp var(--d, 9s) linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes floatUp{
+  0%   { transform: translateY(0) rotate(var(--r, 0deg)); opacity: 0.0; }
+  10%  { opacity: 0.85; }
+  100% { transform: translateY(-130vh) rotate(calc(var(--r, 0deg) + 40deg)); opacity: 0.0; }
+}
+
+/* Manual “randomness” using nth-child */
+.floating-hearts span:nth-child(1)  { --x: 5%;  --s: 22px; --d: 8s;  --delay: -1s;  --r: -12deg; }
+.floating-hearts span:nth-child(2)  { --x: 12%; --s: 30px; --d: 10s; --delay: -4s;  --r: 18deg; }
+.floating-hearts span:nth-child(3)  { --x: 18%; --s: 26px; --d: 9s;  --delay: -2s;  --r: -6deg; }
+.floating-hearts span:nth-child(4)  { --x: 25%; --s: 20px; --d: 7s;  --delay: -6s;  --r: 22deg; }
+.floating-hearts span:nth-child(5)  { --x: 31%; --s: 34px; --d: 11s; --delay: -3s;  --r: -18deg; }
+.floating-hearts span:nth-child(6)  { --x: 38%; --s: 24px; --d: 8.5s;--delay: -5s;  --r: 10deg; }
+.floating-hearts span:nth-child(7)  { --x: 44%; --s: 28px; --d: 9.5s;--delay: -1.5s;--r: -24deg; }
+.floating-hearts span:nth-child(8)  { --x: 50%; --s: 18px; --d: 7.5s;--delay: -7s;  --r: 30deg; }
+.floating-hearts span:nth-child(9)  { --x: 56%; --s: 32px; --d: 12s; --delay: -2.5s;--r: -10deg; }
+.floating-hearts span:nth-child(10) { --x: 62%; --s: 24px; --d: 8.8s;--delay: -4.5s;--r: 14deg; }
+.floating-hearts span:nth-child(11) { --x: 68%; --s: 26px; --d: 10.5s;--delay: -6.5s;--r: -20deg; }
+.floating-hearts span:nth-child(12) { --x: 74%; --s: 20px; --d: 7.8s;--delay: -3.2s;--r: 8deg; }
+.floating-hearts span:nth-child(13) { --x: 80%; --s: 36px; --d: 13s; --delay: -5.8s;--r: -16deg; }
+.floating-hearts span:nth-child(14) { --x: 86%; --s: 22px; --d: 8.2s;--delay: -2.2s;--r: 26deg; }
+.floating-hearts span:nth-child(15) { --x: 92%; --s: 28px; --d: 9.2s;--delay: -7.2s;--r: -8deg; }
+
+/* Repeat pattern so hearts 16-30 also get variety */
+.floating-hearts span:nth-child(n+16):nth-child(odd)  { opacity: 0.75; }
+.floating-hearts span:nth-child(n+16):nth-child(even) { opacity: 0.90; }
+.floating-hearts span:nth-child(16) { --x: 8%;  --s: 26px; --d: 9.8s; --delay: -3.7s; --r: 12deg; }
+.floating-hearts span:nth-child(17) { --x: 21%; --s: 20px; --d: 7.2s; --delay: -6.1s; --r: -14deg; }
+.floating-hearts span:nth-child(18) { --x: 33%; --s: 32px; --d: 12.2s;--delay: -2.9s; --r: 20deg; }
+.floating-hearts span:nth-child(19) { --x: 47%; --s: 24px; --d: 8.6s; --delay: -5.4s; --r: -22deg; }
+.floating-hearts span:nth-child(20) { --x: 59%; --s: 18px; --d: 7.7s; --delay: -7.6s; --r: 28deg; }
+.floating-hearts span:nth-child(21) { --x: 71%; --s: 30px; --d: 11.3s;--delay: -4.0s; --r: -6deg; }
+.floating-hearts span:nth-child(22) { --x: 83%; --s: 22px; --d: 8.1s; --delay: -6.8s; --r: 16deg; }
+.floating-hearts span:nth-child(23) { --x: 95%; --s: 34px; --d: 13.2s;--delay: -3.1s; --r: -18deg; }
