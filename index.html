@@ -17,6 +17,19 @@
 </head>
 <body>
 
+<body>
+
+<div id="lock-screen">
+  <h1>💌</h1>
+  <p>Enter the 4-digit code</p>
+  <input type="password" id="code" maxlength="4" inputmode="numeric" />
+  <button onclick="unlock()">Open</button>
+  <p id="error"></p>
+</div>
+
+<div id="content" style="display:none;">
+
+
   <!-- Floating hearts overlay (CSS only) -->
   <div class="floating-hearts" aria-hidden="true">
     <span>💖</span><span>💘</span><span>💕</span><span>💗</span><span>💓</span>
@@ -110,4 +123,25 @@
   </footer>
 
   </body>
+</div>
+
+<script>
+  const CORRECT_CODE = "2810"; // 👈 CHANGE THIS
+
+  function unlock() {
+    const input = document.getElementById("code").value;
+    const error = document.getElementById("error");
+
+    if (input === CORRECT_CODE) {
+      document.getElementById("lock-screen").style.display = "none";
+      document.getElementById("content").style.display = "block";
+    } else {
+      error.textContent = "Wrong code 💔";
+    }
+  }
+</script>
+
+</body>
 </html>
+
+
